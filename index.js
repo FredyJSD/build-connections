@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import fs from 'fs/promises';
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; //Heroku
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
