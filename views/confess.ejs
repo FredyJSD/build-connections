@@ -11,11 +11,11 @@
   <div class="card-menu">
         <h1>Confess</h1>
         <div class="card-container confess-card">
-            <p>What's your favorite childhood memory?</p>
+            <p class="question-text">What's your favorite childhood memory?</p>
         </div> 
         <div class="direction-buttons">
-            <button class="prev-button">&#x2190; Prev</button>
-            <button class="next-button">Next &#x2192;</button>
+            <button class="prev-button" onclick="previousQuestion()">&#x2190; Prev</button>
+            <button class="next-button" onclick="nextQuestion()">Next &#x2192;</button>
         </div>
         <div class="directions">
             <form for="ice-button" action="/icebreaker" method="get">
@@ -27,6 +27,27 @@
         </div>
   </div>
   <script>
+        let questions = <%- JSON.stringify(question)%>;
+        let index = 0;
+
+        function updateQuestion(){
+            const questionText = document.querySelector('.question-text');
+            questionText.textContent = questions[index].question;
+        }
+
+        function previousQuestion(){
+            if(index > 0){
+                index--;
+                updateQuestion();
+            }
+        }
+
+        function nextQuestion(){
+            if(index < questions.length - 1){
+                index++;
+                updateQuestion();
+            }
+        }
   </script>
 </body>
 </html>
